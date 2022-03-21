@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-todo2',
@@ -11,11 +12,8 @@ export class Todo2Component implements OnInit {
   tasks:string[] = [];
   constructor() { 
 
-    this.tasks = [
-      ' task 1 ',
-      ' task 2 ',
-      ' task 3 ',
-    ]
+    
+    
   }
 
   ngOnInit(): void {
@@ -25,5 +23,9 @@ export class Todo2Component implements OnInit {
     let newTask = addForm.value.task;
     this.tasks.push(newTask);
     addForm.resetForm();
+  }
+
+  handleRemove(t:string){
+    this.tasks = this.tasks.filter((myTask) => myTask != t);
   }
 }
