@@ -25,11 +25,17 @@ export class Todo2Component implements OnInit {
   constructor() {
   }
 
+  readonly TASK_KEY = 'tasks';
+
   SortEnum = SortOptions;
   sort: SortOptions = SortOptions.NONE;
 
 
   ngOnInit(): void {
+    let savedTasksJson = localStorage.getItem(this.TASK_KEY);
+    if (savedTasksJson != null) {
+      this.tasks = JSON.parse(savedTasksJson);
+    }
   }
 
   handleSubmit(addForm: NgForm) {
@@ -99,5 +105,9 @@ export class Todo2Component implements OnInit {
     this.tasks.map ( (task) => {
       task.isVisible = (task.name.includes(v));
     });
+  }
+
+  handleSave():void{
+    localStorage.setItem(this.TASK_KEY,JSON.stringify(this.tasks))
   }
 }
