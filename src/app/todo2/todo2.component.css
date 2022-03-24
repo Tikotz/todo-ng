@@ -1,0 +1,9 @@
+.sortButton{
+    padding-left: 20px;
+}
+
+.isSorted {
+    font-weight: 800;
+    font-size: 25px;
+    background-color: red;
+}
